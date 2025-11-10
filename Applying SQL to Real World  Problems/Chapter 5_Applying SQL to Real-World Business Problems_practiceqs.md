@@ -191,7 +191,7 @@
 
 ---
 
-| Category                                  | Your original queries covered                                                                          |
+| Category                                  | Queries                                                                 |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | **1. Data Transformation & Cleaning**     | LOWER(), ROUND(), EXTRACT(), basic filtering (release_year, rental_rate, etc.)                         |
 | **2. Aggregation & Financial Insights**   | COUNT(), AVG(), SUM(), GROUP BY active, STRING_AGG(), comparisons by customer activity                 |
