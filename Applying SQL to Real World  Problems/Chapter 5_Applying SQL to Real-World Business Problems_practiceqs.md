@@ -189,4 +189,14 @@
 * Applied **best practices** for clean, maintainable SQL.
 * Developed queries that provide actionable business insights.
 
+---
+
+| Category                                  | Your original queries covered                                                                          |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **1. Data Transformation & Cleaning**     | LOWER(), ROUND(), EXTRACT(), basic filtering (release_year, rental_rate, etc.)                         |
+| **2. Aggregation & Financial Insights**   | COUNT(), AVG(), SUM(), GROUP BY active, STRING_AGG(), comparisons by customer activity                 |
+| **3. Data Exploration**                   | LIMIT, ORDER BY DESC, schema exploration via `information_schema`, CREATE VIEW for table/column lookup |
+| **4. Business Analytics Queries**         | Monthly income, average film length by category, most rented films                                     |
+| **5. Database Management**                | CREATE TABLE, INSERT INTO, UPDATE, DELETE, CREATE TABLE AS SELECT, subquery-based updates              |
+| **6. Query Readability & Best Practices** | Use of IN vs OR, consistent indentation, aliasing, JOIN comments                                       |
 
