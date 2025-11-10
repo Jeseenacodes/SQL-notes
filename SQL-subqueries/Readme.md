@@ -140,3 +140,14 @@ Think of it as a **virtual table** built from a query.
 | **View**                  | Saved query           | Reuse long SQL  | `CREATE VIEW`          | Virtual table           |
 
 ---
+
+| Clause                       | Purpose                 | Returns                  | Common Use                           |
+| ---------------------------- | ----------------------- | ------------------------ | ------------------------------------ |
+| **WHERE**                    | Filter rows             | Scalar or list of values | Filter data with comparisons or `IN` |
+| **HAVING**                   | Filter groups           | Single (scalar) value    | Compare aggregates                   |
+| **FROM**                     | Create derived table    | Table (rows + columns)   | Simplify complex queries             |
+| **SELECT**                   | Return calculated field | One scalar per row       | Add dynamic values per record        |
+| **INSERT / UPDATE / DELETE** | Manipulate data         | Table or list            | Copy, filter, or modify data         |
+---
+
+
