@@ -1,10 +1,7 @@
 
 ### **1️⃣ Scalar Subqueries**
 
-**Definition:**
-A **scalar subquery** is a subquery (a query inside another query) that **returns only one single value** — just one cell (one row, one column).
-
-You can use it **inside SELECT, WHERE, or HAVING** clauses like a normal value.
+A **scalar subquery** is a subquery (a query inside another query) that **returns only one single value** — just one cell (one row, one column). Used **inside SELECT, WHERE, or HAVING** clauses like a normal value.
 
 **Example:**
 
@@ -21,8 +18,6 @@ So, the outer query lists patients older than that average.
 ---
 
 ### **2️⃣ Multi-row and Multi-column Subqueries**
-
-**Definition:**
 
 * A **multi-row subquery** returns **multiple rows** (but one column).
 * A **multi-column subquery** returns **multiple columns and rows**.
@@ -51,10 +46,7 @@ WHERE (dept_id, salary) IN (SELECT dept_id, salary FROM senior_doctors);
 
 ### **3️⃣ Nested and Correlated Subqueries**
 
-**Definition:**
-
 * A **nested subquery** (also called a simple subquery) runs **independently** — the inner query runs first, and its result is used by the outer one.
-* A **correlated subquery** depends on the **outer query** — it runs **once for each row** in the outer query.
 
 **Example (nested):**
 
@@ -63,8 +55,9 @@ SELECT name
 FROM patients
 WHERE city IN (SELECT city FROM hospitals WHERE rating > 4);
 ```
-
 The inner query runs first to get cities, then the outer query runs next.
+
+* A **correlated subquery** depends on the **outer query** — it runs **once for each row** in the outer query.
 
 **Example (correlated):**
 
@@ -148,6 +141,44 @@ Think of it as a **virtual table** built from a query.
 | **FROM**                     | Create derived table    | Table (rows + columns)   | Simplify complex queries             |
 | **SELECT**                   | Return calculated field | One scalar per row       | Add dynamic values per record        |
 | **INSERT / UPDATE / DELETE** | Manipulate data         | Table or list            | Copy, filter, or modify data         |
+
 ---
+### MATCH THE SUBQUERY TYPE TO GOAL
+
+| Goal                           | Subquery Type           | Clause Used            | Tip                                 |
+| ------------------------------ | ----------------------- | ---------------------- | ----------------------------------- |
+| Compare a value to one number  | **Scalar subquery**     | `SELECT`, `WHERE`      | Must return **one value**           |
+| Filter by membership           | **Set subquery**        | `IN`, `NOT IN`         | Returns a **list** of values        |
+| Check for existence            | **Correlated subquery** | `EXISTS`, `NOT EXISTS` | Runs **per row** of outer query     |
+| Use summarized data as a table | **Derived table**       | `FROM`                 | Alias it like a normal table        |
+| Filter grouped results         | **Aggregate subquery**  | `HAVING`               | Compare group stats to global stats |
+
+---
+### When to use which
+
+| Clause   | When to Use                            | Returns              |
+| -------- | -------------------------------------- | -------------------- |
+| `SELECT` | To calculate or display an extra value | One value per row    |
+| `FROM`   | When creating a temporary table        | A virtual dataset    |
+| `WHERE`  | To filter rows                         | Boolean condition    |
+| `HAVING` | To filter grouped data                 | Aggregate comparison |
+| `EXISTS` | To test for matching rows              | True / False         |
+
+---
+### What am I trying to compare or filter?
+
+Subqueries are used to compare a value to:
+- A summary calculation (e.g., average, max)
+- A set of values (list or table)
+- A condition that exists in another dataset
+
+### Build Subqueries Incrementally
+
+- Write and run the inner query alone.
+- Verify it returns the data you need.
+- Then wrap it inside the outer query.
+- Like testing parts of a math problem before combining them.
+
+
 
 
