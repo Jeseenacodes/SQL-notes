@@ -142,7 +142,7 @@ SELECT region, salesperson, total_sales,
 
     RANK() OVER ( PARTITION BY region ORDER BY total_sales DESC ) AS rank_value,
 
-    DENSE_RANK() OVER ( PARTITION BY regionORDER BY total_sales DESC ) AS dense_rank_value,
+    DENSE_RANK() OVER ( PARTITION BY region ORDER BY total_sales DESC ) AS dense_rank_value,
 
     LAG(total_sales) OVER (PARTITION BY region ORDER BY total_sales DESC ) AS prev_sales,
 
