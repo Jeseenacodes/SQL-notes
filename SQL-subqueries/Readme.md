@@ -165,6 +165,29 @@ Think of it as a **virtual table** built from a query.
 | `EXISTS` | To test for matching rows              | True / False         |
 
 ---
+
+| Clause   | Subquery Return Type          | Typical Usage              | Example                                                             |
+| -------- | ----------------------------- | -------------------------- | ------------------------------------------------------------------- |
+| `SELECT` | Scalar (1 value per row)      | Add a calculated column    | `SELECT name, (SELECT COUNT(*) FROM orders o WHERE o.cust_id=c.id)` |
+| `FROM`   | Table (multiple columns/rows) | Virtual table for grouping | `FROM (SELECT ... GROUP BY ...) AS t`                               |
+| `WHERE`  | Scalar or list                | Row filtering              | `WHERE salary > (SELECT AVG(salary) FROM employees)`                |
+| `HAVING` | Scalar                        | Group filtering            | `HAVING SUM(sales) > (SELECT AVG(total_sales) FROM ...)`            |
+
+---
+| **#** | **Subquery Type / Location**         | **Keyword / Clause**                 | **Purpose / Use Case**                             | **Example Question**                                       |
+| :---: | :----------------------------------- | :----------------------------------- | :------------------------------------------------- | :--------------------------------------------------------- |
+|  1️⃣  | **Scalar Subquery**                  | `=` `<` `>` (in `WHERE` or `SELECT`) | Compare to **one value**                           | Who earns above the avg salary?                            |
+|  2️⃣  | **Subquery in WHERE**                | `WHERE`                              | Filter main query based on another query’s result  | Which films were released before the earliest rental date? |
+|  3️⃣  | **Subquery in SELECT**               | `SELECT`                             | Display an **extra calculated value** for each row | Show each customer and their total rentals                 |
+|  4️⃣  | **IN Subquery**                      | `IN`                                 | Match with a **list of values**                    | Customers who made rentals                                 |
+|  5️⃣  | **NOT IN Subquery**                  | `NOT IN`                             | Exclude values in another list                     | Movies never rented                                        |
+|  6️⃣  | **EXISTS Subquery**                  | `EXISTS`                             | Check if related record **exists**                 | Customers who have at least one rental                     |
+|  7️⃣  | **NOT EXISTS Subquery**              | `NOT EXISTS`                         | Find records **without** a related entry           | Customers with no rentals                                  |
+|  8️⃣  | **Correlated Subquery**              | (any clause)                         | Inner query uses **outer query column**            | Employees earning above their dept average                 |
+|  9️⃣  | **Subquery in FROM (Derived Table)** | `FROM`                               | Create a **temporary result set**                  | Departments with max salary > 10,000                       |
+|  🔟  | **Subquery in HAVING**               | `HAVING`                             | Filter **groups** based on aggregated metric       | Departments with avg salary above company avg              |
+
+---
 ### What am I trying to compare or filter?
 
 Subqueries are used to compare a value to:
