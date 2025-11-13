@@ -60,11 +60,52 @@ LIMIT 1;
 
 ---
 
-### Notes:
+##  **MySQL Date & Time Functions**
 
-* **`NOW()` vs `SYSDATE()`** → NOW() is fixed at query start; SYSDATE() changes during execution.
-* **`DATEDIFF()`** → Only counts *whole days*; divide by 365 for approximate years.
-* **Functions like `MONTHNAME()` and `DAYNAME()`** are great for human-readable reports.
-* Always use **aliases (`AS`)** for clarity when selecting multiple derived columns.
+### **1️⃣ Current Date and Time Functions**
+
+| Function         | Description                                           | Example                  | Notes                                              |
+| ---------------- | ----------------------------------------------------- | ------------------------ | -------------------------------------------------- |
+| `NOW()`          | Returns current date & time **at query start**        | `SELECT NOW();`          | Same timestamp even after delays (e.g., `SLEEP()`) |
+| `SYSDATE()`      | Returns current date & time **at function execution** | `SELECT SYSDATE();`      | Changes with each call                             |
+| `CURRENT_DATE()` | Returns current date only                             | `SELECT CURRENT_DATE();` | Equivalent to `CURDATE()`                          |
+| `CURRENT_TIME()` | Returns current time only                             | `SELECT CURRENT_TIME();` | Equivalent to `CURTIME()`                          |
+
+---
+
+### **2️⃣ Extracting Date Parts from a Column**
+
+Use these to break down a `DATETIME` column such as `last_update` in the **Sakila** database:
+
+| Function      | Purpose                | Example                  | Output Example      |
+| ------------- | ---------------------- | ------------------------ | ------------------- |
+| `SECOND()`    | Extracts seconds       | `SECOND(last_update)`    | 42                  |
+| `MINUTE()`    | Extracts minutes       | `MINUTE(last_update)`    | 15                  |
+| `HOUR()`      | Extracts hours         | `HOUR(last_update)`      | 13                  |
+| `DAY()`       | Extracts day of month  | `DAY(last_update)`       | 25                  |
+| `DAYNAME()`   | Returns weekday name   | `DAYNAME(last_update)`   | "Wednesday"         |
+| `WEEK()`      | Returns week number    | `WEEK(last_update)`      | 34                  |
+| `MONTH()`     | Returns month number   | `MONTH(last_update)`     | 11                  |
+| `MONTHNAME()` | Returns month name     | `MONTHNAME(last_update)` | "November"          |
+| `YEAR()`      | Returns year           | `YEAR(last_update)`      | 2025                |
+| `TIMESTAMP()` | Returns datetime value | `TIMESTAMP(last_update)` | 2025-11-07 10:30:00 |
+
+---
+
+### **3️⃣ Date Difference**
+
+| Function                       | Description                                      | Example                                          | Result       |
+| ------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------ |
+| `DATEDIFF(date1, date2)`       | Returns the **number of days** between two dates | `SELECT DATEDIFF(NOW(), last_update) FROM film;` | e.g., `180`  |
+| Approximate years since update | Divide by 365                                    | `DATEDIFF(NOW(), last_update)/365`               | e.g., `0.49` |
+
+---
+
+### **Key Takeaways**
+
+* `NOW()` is fixed; `SYSDATE()` is real-time.
+* Use **aliases (`AS`)** for readability when extracting multiple date parts.
+* `DATEDIFF()` Only counts *whole days*; divide by 365 for approximate years.
+* `DAYNAME()` and `MONTHNAME()` help make reports more readable.
 
 ---
