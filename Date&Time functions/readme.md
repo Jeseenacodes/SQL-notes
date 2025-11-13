@@ -68,5 +68,3 @@ LIMIT 1;
 * Always use **aliases (`AS`)** for clarity when selecting multiple derived columns.
 
 ---
-
-Would you like me to make this into a **PDF titled “MySQL Date & Time Functions Practice”** (in the same style as your SQL Training Portfolio)?
